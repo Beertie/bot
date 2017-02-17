@@ -17,7 +17,7 @@ class BotController extends AppController
     public function index(){
 
         $this->viewBuilder()->layout(false);
-        $access_token = 'EAACrv7aoid8BAMI0JTU3DZCn0oR7VrpP9jekoMxztA3Kucj1CpodwOkLZA6XZA6urYy8psjZC18FaIZCP3Bh6kBR8BAfsn2yKqQFosRIlZBxXCdcZBvyXs7ESHjMcmZAxQQ6YhvReCZCZACg2M5V4rplBUO52pbRhA0rmk6ZA7RFNmByAZDZD';
+  /*      $access_token = 'EAACrv7aoid8BAMI0JTU3DZCn0oR7VrpP9jekoMxztA3Kucj1CpodwOkLZA6XZA6urYy8psjZC18FaIZCP3Bh6kBR8BAfsn2yKqQFosRIlZBxXCdcZBvyXs7ESHjMcmZAxQQ6YhvReCZCZACg2M5V4rplBUO52pbRhA0rmk6ZA7RFNmByAZDZD';
         $verify_token = 'fb_time_bot';
         $hub_verify_token = null;
         if(isset($_REQUEST['hub_challenge'])) {
@@ -26,10 +26,10 @@ class BotController extends AppController
         }
         if ($hub_verify_token === $verify_token) {
             echo $challenge;
-        }
+        }*/
 
 
-        /*$this->viewBuilder()->layout(false);
+        $this->viewBuilder()->layout(false);
         $config = [
             'facebook_token' => 'EAACrv7aoid8BAMI0JTU3DZCn0oR7VrpP9jekoMxztA3Kucj1CpodwOkLZA6XZA6urYy8psjZC18FaIZCP3Bh6kBR8BAfsn2yKqQFosRIlZBxXCdcZBvyXs7ESHjMcmZAxQQ6YhvReCZCZACg2M5V4rplBUO52pbRhA0rmk6ZA7RFNmByAZDZD',
         ];
@@ -49,7 +49,7 @@ class BotController extends AppController
         });
 
         // start listening
-        $botman->listen();*/
+        $botman->listen();
 
     }
 
