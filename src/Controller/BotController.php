@@ -59,4 +59,8 @@ class BotController extends AppController
         return $random->getUri();
 
     }
+
+    public function test(){
+
+    }
 }
