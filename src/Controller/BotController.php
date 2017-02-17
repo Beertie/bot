@@ -16,19 +16,19 @@ class BotController extends AppController
 
     public function index(){
 
-        //$this->viewBuilder()->layout(false);
-        $config = [
+        $this->viewBuilder()->layout(false);
+       /* $config = [
             'facebook_token' => 'EAACrv7aoid8BAMI0JTU3DZCn0oR7VrpP9jekoMxztA3Kucj1CpodwOkLZA6XZA6urYy8psjZC18FaIZCP3Bh6kBR8BAfsn2yKqQFosRIlZBxXCdcZBvyXs7ESHjMcmZAxQQ6YhvReCZCZACg2M5V4rplBUO52pbRhA0rmk6ZA7RFNmByAZDZD',
         ];
 
         // create an instance
         $botman = BotManFactory::create($config);
-        //$botman->verifyServices('fb_time_bot');
+        $botman->verifyServices('fb_time_bot');
 
-       /* $botman->hears('dumpert', function (BotMan $bot) {
+        $botman->hears('dumpert', function (BotMan $bot) {
             $url = $this->randomDumpert();
             $bot->reply($url);
-        });*/
+        });
 
         // give the bot something to listen for.
         $botman->hears('hello', function (BotMan $bot) {
@@ -36,7 +36,7 @@ class BotController extends AppController
         });
 
         // start listening
-        $botman->listen();
+        $botman->listen();*/
 
     }
 
