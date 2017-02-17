@@ -17,8 +17,11 @@ class BotController extends AppController
     public function index(){
 
         $this->viewBuilder()->layout(false);
+
+        //Config token
+        //EAACrv7aoid8BAE9KWa8R5l0rwAKeOmw61EAzSKRE42CJZC2G5ibBGpMUyQjj6latpAjI8DnKz0M1u9UKZCh2m4x0XxHMw47XV6mgV1FU9UePqi2fZCfGU2GDZADix9PXk4eXzSqclcwCiHyMHfnhFXsn5PrE0ojXFb1baQQoaQZDZD
         $config = [
-            'facebook_token' => 'EAACrv7aoid8BAMI0JTU3DZCn0oR7VrpP9jekoMxztA3Kucj1CpodwOkLZA6XZA6urYy8psjZC18FaIZCP3Bh6kBR8BAfsn2yKqQFosRIlZBxXCdcZBvyXs7ESHjMcmZAxQQ6YhvReCZCZACg2M5V4rplBUO52pbRhA0rmk6ZA7RFNmByAZDZD',
+            'facebook_token' => 'EAACrv7aoid8BAE9KWa8R5l0rwAKeOmw61EAzSKRE42CJZC2G5ibBGpMUyQjj6latpAjI8DnKz0M1u9UKZCh2m4x0XxHMw47XV6mgV1FU9UePqi2fZCfGU2GDZADix9PXk4eXzSqclcwCiHyMHfnhFXsn5PrE0ojXFb1baQQoaQZDZD',
         ];
 
         // create an instance
