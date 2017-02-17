@@ -23,12 +23,12 @@ class BotController extends AppController
 
         // create an instance
         $botman = BotManFactory::create($config);
-        $botman->verifyServices('fb_time_bot');
+        //$botman->verifyServices('fb_time_bot');
 
-        $botman->hears('dumpert', function (BotMan $bot) {
+       /* $botman->hears('dumpert', function (BotMan $bot) {
             $url = $this->randomDumpert();
             $bot->reply($url);
-        });
+        });*/
 
         // give the bot something to listen for.
         $botman->hears('hello', function (BotMan $bot) {
