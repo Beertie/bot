@@ -14,28 +14,71 @@ use Goutte\Client;
 class BotController extends AppController
 {
 
+    /**
+     * Fb token of bot page
+     *
+     * @var string
+     */
+    private $token = "EAACrv7aoid8BAH9j7ZCNprZBZAHKvs0r9qD87I1gD6i8BZCbkZBvWv8d5JPnFNasFi9JUhQbnC6Ufs6wkG39ZCErOnKYOPLzYsWdAOZBdtigfraoHrFqAaMqKUhuk7AWTFZCmE5zBZCfy9hnzZCYPm5XUaUiX7KogCt2rQ6ZCoG52DfTwZDZD";
+
+    private $verify_token = "fb_time_bot";
+
     public function index(){
 
         $this->viewBuilder()->layout(false);
 
         //Config token
-        //EAACrv7aoid8BAE9KWa8R5l0rwAKeOmw61EAzSKRE42CJZC2G5ibBGpMUyQjj6latpAjI8DnKz0M1u9UKZCh2m4x0XxHMw47XV6mgV1FU9UePqi2fZCfGU2GDZADix9PXk4eXzSqclcwCiHyMHfnhFXsn5PrE0ojXFb1baQQoaQZDZD
         $config = [
-            'facebook_token' => 'EAACrv7aoid8BAE9KWa8R5l0rwAKeOmw61EAzSKRE42CJZC2G5ibBGpMUyQjj6latpAjI8DnKz0M1u9UKZCh2m4x0XxHMw47XV6mgV1FU9UePqi2fZCfGU2GDZADix9PXk4eXzSqclcwCiHyMHfnhFXsn5PrE0ojXFb1baQQoaQZDZD',
+            'facebook_token' => $this->token,
         ];
 
         // create an instance
         $botman = BotManFactory::create($config);
         $botman->verifyServices('fb_time_bot');
 
-        $botman->hears('dumpert', function (BotMan $bot) {
-            $url = $this->randomDumpert();
-            $bot->reply($url);
+        $botman->hears("help", function (Botman $bot){
+
+            $help = "Hi, this is the help options of me \n
+cats: for cats facts \n
+-ask me 2 \n
+-ask me 3 \n
+-ask me 4 \n
+-ask me 5 \n
+            ";
+            $bot->reply($help);
         });
 
+      /*  $botman->hears('dumpert', function (BotMan $bot) {
+            $url = $this->randomDumpert();
+            $bot->reply($url);
+        });*/
+
         // give the bot something to listen for.
-        $botman->hears('hello', function (BotMan $bot) {
-            $bot->reply('Hello yourself.');
+        $botman->hears('Hey|Hi|Hello', function (BotMan $bot) {
+
+            if($bot->isBot()){
+                return;
+            }
+
+            $response_array = [
+                "Heey how are you doing?",
+                "Heey men how are you ?",
+                "Hi how’s it going?"
+            ];
+
+            $bot->types(2);
+            $bot->reply($response_array[rand(0, (count($response_array) - 1))]);
+        });
+
+        //Give u a random cat facts.
+        $botman->hears('Cats', function (BotMan $bot) {
+
+            if($bot->isBot()){
+                return;
+            }
+
+            $bot->types(2);
+            $bot->reply($this->catFact());
         });
 
         // start listening
@@ -63,7 +106,46 @@ class BotController extends AppController
 
     }
 
-    public function test(){
+    public function catFact(){
 
+        $jsonObj = json_decode(file_get_contents("http://catfacts-api.appspot.com/api/facts"));
+
+        if($jsonObj->success == "true"){
+
+            return $jsonObj->facts[0];
+        }
+
+    }
+
+    public function verifyToken(){
+
+        $this->viewBuilder()->layout(false);
+
+        $access_token = $this->token;
+        $verify_token = $this->verify_token;
+        $hub_verify_token = null;
+        if(isset($_REQUEST["hub_challenge"])) {
+                    $challenge = $_REQUEST["hub_challenge"];
+         $hub_verify_token = $_REQUEST["hub_verify_token"];
+        }
+        if ($hub_verify_token === $verify_token) {
+            echo $challenge;
+        }
+
+    }
+
+    public function test(){
+        $this->viewBuilder()->layout(false);
+
+        $access_token = $this->token;
+        $verify_token = $this->verify_token;
+        $hub_verify_token = null;
+        if(isset($_REQUEST["hub_challenge"])) {
+            $challenge = $_REQUEST["hub_challenge"];
+            $hub_verify_token = $_REQUEST["hub_verify_token"];
+        }
+        if ($hub_verify_token === $verify_token) {
+            echo $challenge;
+        }
     }
 }
