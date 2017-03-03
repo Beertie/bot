@@ -1,8 +1,11 @@
 <?php
 namespace App\Shell;
 
+<<<<<<< HEAD
 use App\Lib\Nbb\Nbb;
 use Cake\Cache\Cache;
+=======
+>>>>>>> origin/master
 use Cake\Console\Shell;
 
 /**
@@ -11,6 +14,7 @@ use Cake\Console\Shell;
 class FooShell extends Shell
 {
 
+<<<<<<< HEAD
     /**
      * Manage the available sub-commands along with their arguments and help
      *
@@ -103,4 +107,7 @@ class FooShell extends Shell
 
         Cache::write(123456789, $team);
     }
+=======
+
+>>>>>>> origin/master
 }
