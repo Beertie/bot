@@ -25,6 +25,23 @@ class Nbb{
         $this->club_id = $club_id;
     }
 
+    public function getAllClubs(){
+
+        $clubs = file_get_contents("http://db.basketball.nl/db/json/club.pl");
+        $clubs = json_decode($clubs);
+
+        return $clubs;
+    }
+
+    public function getAllTeams($club_id){
+        $url = "http://db.basketball.nl/db/json/team.pl?clb_ID=$club_id";
+
+        $teams = file_get_contents($url);
+        $teams = json_decode($teams);
+        return $teams;
+
+    }
+
     /**
      * Get all games of one seseon of teh select club sort bij date
      *
@@ -342,28 +359,6 @@ class Nbb{
 
         $stats = file_get_contents($url);
         $stats = json_decode($stats);
-
-        /**
-         * 	(int) 0 => object(stdClass) {
-        afko => 'BV Voorne HS 1'
-        ID => '235'
-        status => 'Actief'
-        rang => '1'
-        gespeeld => '10'
-        percentage => '90.0'
-        tegenscore => '480'
-        punten => '18'
-        eigenscore => '714'
-        datum => '2016-12-21'
-        team => 'BV Voorne Heren 1'
-        saldo => (int) 234
-        positie => '1'
-        },
-         */
-
-
-       // debug($stats);
-
 
     }
 
